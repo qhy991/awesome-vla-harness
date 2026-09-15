@@ -1,0 +1,25 @@
+name: Broken link
+description: 报告失效或错误链接
+title: "[Broken Link]: "
+labels:
+  - type:broken-link
+
+body:
+  - type: input
+    id: project
+    attributes:
+      label: 项目 / 文件
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: 失效 URL
+    validations:
+      required: true
+
+  - type: textarea
+    id: replacement
+    attributes:
+      label: 建议的新 URL / 说明

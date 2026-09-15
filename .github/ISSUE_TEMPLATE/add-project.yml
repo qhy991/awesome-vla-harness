@@ -1,0 +1,84 @@
+name: Add a project
+description: 建议新增一个 Harness / Benchmark / Runtime / Research 项目
+title: "[Add]: "
+labels:
+  - type:add-project
+  - status:needs-triage
+
+body:
+  - type: input
+    id: name
+    attributes:
+      label: 项目名称
+    validations:
+      required: true
+
+  - type: input
+    id: repo
+    attributes:
+      label: 官方仓库
+      placeholder: https://github.com/...
+    validations:
+      required: true
+
+  - type: input
+    id: docs
+    attributes:
+      label: 官方文档 / 项目主页
+
+  - type: input
+    id: paper
+    attributes:
+      label: 原始论文
+
+  - type: input
+    id: organization
+    attributes:
+      label: 维护者 / 组织
+
+  - type: input
+    id: license
+    attributes:
+      label: License
+      placeholder: Apache-2.0 / MIT / ...
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: 分类
+      options:
+        - VLA Evaluation
+        - LLM Evaluation
+        - Agent Harness
+        - Robotics Stack
+        - Benchmark / Simulator
+        - Runtime / Deployment
+        - Observability
+        - Harness Research
+    validations:
+      required: true
+
+  - type: textarea
+    id: capability
+    attributes:
+      label: 主要能力
+      description: 模型后端、插件、部署、评估方式等
+
+  - type: textarea
+    id: reason
+    attributes:
+      label: 为什么值得收录？
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: verification
+    attributes:
+      label: Verification
+      options:
+        - label: 我已确认这是官方仓库/官方来源
+          required: true
+        - label: 我已检查 License
+          required: true
+        - label: 我已搜索现有列表确认不存在重复项
+          required: true

@@ -1,0 +1,5 @@
+# Tooling dependencies for scripts/ (CI installs these).
+# check_links.py and render_charts.py need only PyYAML; jsonschema upgrades
+# validate_entries.py from its built-in structural checks to full schema validation.
+pyyaml>=6.0
+jsonschema>=4.0

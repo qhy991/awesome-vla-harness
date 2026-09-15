@@ -1,0 +1,180 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/OWNER/awesome-vla-harness/blob/main/data/schema.json",
+  "title": "Awesome VLA Harness project registry",
+  "description": "Schema for data/projects.yaml. The YAML file is a list of project entries.",
+  "type": "array",
+  "minItems": 1,
+  "items": { "$ref": "#/$defs/project" },
+  "$defs": {
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "organization",
+        "url",
+        "category",
+        "license",
+        "capabilities",
+        "backends",
+        "deployment",
+        "evaluation",
+        "maturity",
+        "last_verified",
+        "references"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$",
+          "description": "Stable kebab-case identifier, unique across the registry."
+        },
+        "name": { "type": "string", "minLength": 1 },
+        "organization": { "type": "string", "minLength": 1 },
+        "url": { "$ref": "#/$defs/httpUrl" },
+        "docs": { "$ref": "#/$defs/httpUrl" },
+        "paper": { "$ref": "#/$defs/httpUrl" },
+        "description_zh": { "type": "string", "maxLength": 600 },
+        "notes": { "type": "string", "maxLength": 1000 },
+        "category": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/category" }
+        },
+        "tags": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" }
+        },
+        "license": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["code"],
+          "properties": {
+            "code": { "type": "string", "minLength": 1 },
+            "data": { "type": "string", "minLength": 1 },
+            "assets": { "type": "string", "minLength": 1 },
+            "notes": { "type": "string" }
+          }
+        },
+        "capabilities": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "model_adapter",
+            "benchmark_adapter",
+            "scheduler",
+            "parallel_rollout",
+            "sandbox",
+            "observability",
+            "plugin_system"
+          ],
+          "properties": {
+            "model_adapter": { "$ref": "#/$defs/tristate" },
+            "benchmark_adapter": { "$ref": "#/$defs/tristate" },
+            "scheduler": { "$ref": "#/$defs/tristate" },
+            "parallel_rollout": { "$ref": "#/$defs/tristate" },
+            "sandbox": { "$ref": "#/$defs/tristate" },
+            "observability": { "$ref": "#/$defs/tristate" },
+            "plugin_system": {
+              "type": "string",
+              "description": "Free-form short label, or 'none'."
+            }
+          }
+        },
+        "backends": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "deployment": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "evaluation": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "maturity": { "$ref": "#/$defs/maturity" },
+        "last_verified": {
+          "type": "string",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+          "description": "Date a human last checked the non-automated fields."
+        },
+        "references": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/httpUrl" }
+        },
+        "github_snapshot": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["fetched_at"],
+          "description": "Automation-owned. Never edit by hand.",
+          "properties": {
+            "fetched_at": { "type": "string" },
+            "stars": { "type": "integer", "minimum": 0 },
+            "forks": { "type": "integer", "minimum": 0 },
+            "last_push": { "type": "string" },
+            "open_items": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "GitHub open_issues_count: includes issues AND pull requests."
+            },
+            "archived": { "type": "boolean" },
+            "error": { "type": "string" }
+          }
+        }
+      }
+    },
+    "httpUrl": {
+      "type": "string",
+      "pattern": "^https?://",
+      "format": "uri"
+    },
+    "tristate": {
+      "description": "true / false / 'partial'",
+      "anyOf": [
+        { "type": "boolean" },
+        { "type": "string", "enum": ["partial"] }
+      ]
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "vla-evaluation",
+        "llm-evaluation",
+        "agent-runtime",
+        "robotics-stack",
+        "benchmark",
+        "simulator",
+        "model-serving",
+        "observability",
+        "deployment",
+        "safety-evaluation",
+        "harness-evolution",
+        "research"
+      ]
+    },
+    "maturity": {
+      "type": "string",
+      "enum": [
+        "emerging",
+        "active",
+        "mature",
+        "stable",
+        "maintenance",
+        "archived"
+      ]
+    }
+  }
+}

@@ -1,0 +1,684 @@
+# data/projects.yaml
+#
+# Source of truth for Awesome VLA Harness.
+#
+# 手工维护：id / name / organization / url / docs / paper / category /
+#           license / capabilities / backends / deployment / evaluation /
+#           maturity / last_verified / references / description_zh / notes
+#
+# 自动注入：github_snapshot.*  —— 由 scripts/update_github_stats.py 刷新，
+#           请勿手工编辑，且始终携带 fetched_at 时间戳。
+
+- id: vla-evaluation-harness
+  name: vla-evaluation-harness
+  organization: allenai
+  url: https://github.com/allenai/vla-evaluation-harness
+  docs: https://allenai.github.io/vla-evaluation-harness/
+  paper: https://arxiv.org/abs/2603.13966
+
+  category:
+    - vla-evaluation
+
+  license:
+    code: Apache-2.0
+
+  description_zh: >-
+    跨 VLA 模型与机器人仿真 Benchmark 的统一评测 Harness；模型服务与 Benchmark
+    进程通过 WebSocket + msgpack 解耦，Benchmark 依赖以容器隔离，支持并行 Episode 评测。
+
+  capabilities:
+    model_adapter: true
+    benchmark_adapter: true
+    scheduler: true
+    parallel_rollout: true
+    sandbox: true
+    observability: true
+    plugin_system: adapter-based
+
+  backends:
+    - vla-model-server
+    - websocket
+
+  deployment:
+    - local
+    - gpu
+    - docker
+
+  evaluation:
+    - episode-rollout
+    - success-rate
+    - reproducibility
+    - batch-inference
+
+  maturity: emerging
+  last_verified: 2026-09-14
+
+  notes: >-
+    模型只需实现统一的 predict()，benchmark 实现精简 adapter 接口，
+    组合关系由配置文件描述。仓库中的 model/benchmark 集成数量会持续变化，
+    建议从上游 config 动态读取而非硬编码。
+
+  references:
+    - https://github.com/allenai/vla-evaluation-harness
+    - https://arxiv.org/abs/2603.13966
+
+- id: lerobot
+  name: LeRobot
+  organization: huggingface
+  url: https://github.com/huggingface/lerobot
+  docs: https://huggingface.co/docs/lerobot
+
+  category:
+    - robotics-stack
+    - vla-evaluation
+
+  license:
+    code: Apache-2.0
+
+  description_zh: >-
+    机器人学习端到端栈：统一 dataset、policy/VLA、训练、evaluation、simulation、
+    真实机器人、相机与遥操作接口，并与 Hugging Face Hub 深度集成。
+
+  capabilities:
+    model_adapter: true
+    benchmark_adapter: partial
+    scheduler: false
+    parallel_rollout: partial
+    sandbox: false
+    observability: partial
+    plugin_system: entry-point-and-package-discovery
+
+  backends:
+    - pytorch
+    - huggingface-hub
+    - simulator
+    - real-robot
+
+  deployment:
+    - local
+    - gpu
+    - real-robot
+    - docker
+
+  evaluation:
+    - policy-rollout
+    - success-rate
+    - dataset-tooling
+    - training-loop
+
+  maturity: active
+  last_verified: 2026-09-14
+
+  notes: >-
+    Scope 远大于 evaluation harness；支持 out-of-tree 的 robot、camera、
+    teleoperator、policy 插件，是“插件不进入主仓库”设计的重要参考。
+
+  references:
+    - https://github.com/huggingface/lerobot
+    - https://huggingface.co/docs/lerobot
+
+- id: lm-evaluation-harness
+  name: lm-evaluation-harness
+  organization: EleutherAI
+  url: https://github.com/EleutherAI/lm-evaluation-harness
+
+  category:
+    - llm-evaluation
+
+  license:
+    code: MIT
+
+  description_zh: >-
+    通用 LLM few-shot / zero-shot benchmark harness，覆盖大量标准任务与子集；
+    task、model adapter、filter、metric、aggregation 边界清晰，并支持插件扩展。
+
+  capabilities:
+    model_adapter: true
+    benchmark_adapter: true
+    scheduler: partial
+    parallel_rollout: partial
+    sandbox: false
+    observability: partial
+    plugin_system: python-entry-points
+
+  backends:
+    - huggingface-transformers
+    - vllm
+    - sglang
+    - api
+
+  deployment:
+    - local
+    - gpu
+    - multi-gpu
+    - inference-server
+    - api
+
+  evaluation:
+    - log-likelihood
+    - generation
+    - metric-registry
+    - aggregation
+
+  maturity: mature
+  last_verified: 2026-09-14
+
+  notes: >-
+    通过 lm_eval.* Python entry points / --plugins 可以把 model backend、
+    filter、metric、aggregation 放在主仓库之外扩展。
+
+  references:
+    - https://github.com/EleutherAI/lm-evaluation-harness
+
+- id: inspect-ai
+  name: Inspect AI
+  organization: UKGovernmentBEIS
+  url: https://github.com/UKGovernmentBEIS/inspect_ai
+  docs: https://inspect.aisi.org.uk/
+
+  category:
+    - agent-runtime
+    - llm-evaluation
+    - safety-evaluation
+
+  license:
+    code: MIT
+
+  description_zh: >-
+    面向 benchmark 与 agent/autonomy/security evaluation 的 harness；
+    Task 抽象为 Dataset + Solver/Agent + Scorer，原生支持工具调用、sandbox、
+    tracing、multi-agent 与网页版 Log Viewer。
+
+  capabilities:
+    model_adapter: true
+    benchmark_adapter: true
+    scheduler: true
+    parallel_rollout: true
+    sandbox: true
+    observability: true
+    plugin_system: python-extension-api
+
+  backends:
+    - api
+    - huggingface-transformers
+    - vllm
+    - sglang
+
+  deployment:
+    - local
+    - api
+    - docker
+    - kubernetes
+    - modal
+    - proxmox
+    - vagrant
+
+  evaluation:
+    - agent-trajectory
+    - tool-calling
+    - model-grading
+    - sandboxed-execution
+    - tracing
+
+  maturity: mature
+  last_verified: 2026-09-14
+
+  notes: >-
+    维护方为 UK AI Security Institute 与 Meridian Labs；
+    是当前 observability 与 sandbox 能力最完整的 agent harness 之一。
+
+  references:
+    - https://github.com/UKGovernmentBEIS/inspect_ai
+    - https://inspect.aisi.org.uk/
+
+- id: opencompass
+  name: OpenCompass
+  organization: open-compass
+  url: https://github.com/open-compass/opencompass
+  docs: https://opencompass.org.cn/
+
+  category:
+    - llm-evaluation
+
+  license:
+    code: Apache-2.0
+
+  description_zh: >-
+    面向大规模 LLM / VLM 的综合评测平台，覆盖大量 benchmark、模型与榜单，
+    官方维护简体中文 README 与文档，适合批量与分布式评测。
+
+  capabilities:
+    model_adapter: true
+    benchmark_adapter: true
+    scheduler: true
+    parallel_rollout: true
+    sandbox: false
+    observability: partial
+    plugin_system: config-and-module-based
+
+  backends:
+    - huggingface-transformers
+    - lmdeploy
+    - vllm
+    - api
+
+  deployment:
+    - local
+    - gpu
+    - multi-gpu
+    - inference-server
+    - api
+
+  evaluation:
+    - benchmark-suite
+    - multimodal
+    - leaderboard
+    - summarizer
+
+  maturity: mature
+  last_verified: 2026-09-14
+
+  notes: >-
+    Config → Model + Dataset → Inferencer → Evaluator → Summarizer；
+    中文资料最完善，但 config 与依赖体系较重。
+
+  references:
+    - https://github.com/open-compass/opencompass
+    - https://github.com/open-compass/opencompass/blob/main/README_zh-CN.md
+    - https://opencompass.org.cn/
+
+- id: lighteval
+  name: LightEval
+  organization: huggingface
+  url: https://github.com/huggingface/lighteval
+  docs: https://huggingface.co/docs/lighteval
+
+  category:
+    - llm-evaluation
+
+  license:
+    code: MIT
+
+  description_zh: >-
+    轻量 LLM 评测工具，内置大量现成 task，强调 sample-level 结果与多后端支持，
+    与 Hugging Face 生态结合紧密。
+
+  capabilities:
+    model_adapter: true
+    benchmark_adapter: true
+    scheduler: partial
+    parallel_rollout: partial
+    sandbox: false
+    observability: partial
+    plugin_system: custom-task-metric-backend
+
+  backends:
+    - huggingface-transformers
+    - accelerate
+    - nanotron
+    - vllm
+    - sglang
+    - inspect
+    - litellm
+    - api
+
+  deployment:
+    - local
+    - gpu
+    - multi-gpu
+    - endpoint
+    - api
+
+  evaluation:
+    - benchmark-suite
+    - sample-level-output
+    - custom-metric
+
+  maturity: active
+  last_verified: 2026-09-14
+
+  references:
+    - https://github.com/huggingface/lighteval
+    - https://huggingface.co/docs/lighteval
+
+- id: helm
+  name: HELM
+  organization: stanford-crfm
+  url: https://github.com/stanford-crfm/helm
+  docs: https://crfm.stanford.edu/helm/
+
+  category:
+    - llm-evaluation
+
+  license:
+    code: Apache-2.0
+
+  description_zh: >-
+    Holistic Evaluation of Language Models：以 scenario + 多维 metric +
+    汇总 + 网页榜单实现整体、透明、可复现的模型评测；当前处于维护模式。
+
+  capabilities:
+    model_adapter: true
+    benchmark_adapter: true
+    scheduler: partial
+    parallel_rollout: false
+    sandbox: false
+    observability: partial
+    plugin_system: module-based
+
+  backends:
+    - api
+    - huggingface-transformers
+
+  deployment:
+    - local
+    - api
+    - web-viewer
+
+  evaluation:
+    - scenario-runspec
+    - multi-dimensional-metric
+    - bias-toxicity
+    - efficiency
+
+  maturity: maintenance
+  last_verified: 2026-09-14
+
+  notes: >-
+    对 holistic / transparency / reproducibility 的抽象仍有很高参考价值，
+    但不建议作为 2026 年新建 harness 项目的默认执行底座。
+
+  references:
+    - https://github.com/stanford-crfm/helm
+    - https://crfm.stanford.edu/helm/
+
+- id: simpler-env
+  name: SimplerEnv
+  organization: simpler-env
+  url: https://github.com/simpler-env/SimplerEnv
+  paper: https://arxiv.org/abs/2405.05941
+
+  category:
+    - benchmark
+    - simulator
+
+  license:
+    code: MIT
+
+  description_zh: >-
+    面向真实机器人 policy / VLA 的 real-to-sim evaluation framework，
+    通过 Visual Matching 与 Variant Aggregation 提升仿真与真实评测的相关性。
+
+  capabilities:
+    model_adapter: partial
+    benchmark_adapter: true
+    scheduler: false
+    parallel_rollout: false
+    sandbox: false
+    observability: false
+    plugin_system: environment-and-policy-integration
+
+  backends:
+    - sapien
+    - maniskill
+    - simulator
+
+  deployment:
+    - local
+    - gpu
+
+  evaluation:
+    - success-rate
+    - visual-matching
+    - variant-aggregation
+    - real-sim-correlation
+
+  maturity: stable
+  last_verified: 2026-09-14
+
+  notes: >-
+    代表性覆盖 RT-1 / RT-1-X / Octo，环境围绕 Google Robot 与 WidowX/Bridge 设置；
+    是早期 VLA evaluation 基础设施的重要代表，但不是通用 harness。
+
+  references:
+    - https://github.com/simpler-env/SimplerEnv
+    - https://arxiv.org/abs/2405.05941
+
+- id: libero
+  name: LIBERO
+  organization: Lifelong-Robot-Learning
+  url: https://github.com/Lifelong-Robot-Learning/LIBERO
+  paper: https://arxiv.org/abs/2306.03310
+
+  category:
+    - benchmark
+    - simulator
+
+  license:
+    code: MIT
+    data: dataset-specific
+
+  description_zh: >-
+    终身机器人学习 / manipulation benchmark，包含 Spatial、Object、Goal 与
+    LIBERO-100 等任务集合，被大量现代 VLA 工作用作 evaluation target。
+
+  capabilities:
+    model_adapter: partial
+    benchmark_adapter: true
+    scheduler: false
+    parallel_rollout: false
+    sandbox: false
+    observability: false
+    plugin_system: task-and-algo-extension
+
+  backends:
+    - mujoco
+    - robosuite
+    - simulator
+
+  deployment:
+    - local
+    - gpu
+
+  evaluation:
+    - success-rate
+    - task-suite
+    - demonstration
+
+  maturity: stable
+  last_verified: 2026-09-14
+
+  notes: >-
+    代码 MIT，数据集另有许可条件；依赖栈相对较老，环境隔离对复现尤为重要。
+    现代 VLA 通常经由 LeRobot、OpenVLA 或 vla-evaluation-harness 等外部 adapter 接入。
+
+  references:
+    - https://github.com/Lifelong-Robot-Learning/LIBERO
+    - https://arxiv.org/abs/2306.03310
+
+# ---------------------------------------------------------------------------
+# Research Frontier
+# ---------------------------------------------------------------------------
+
+- id: life-harness
+  name: Life-Harness
+  organization: research
+  url: https://arxiv.org/abs/2605.22166
+  paper: https://arxiv.org/abs/2605.22166
+
+  category:
+    - research
+    - harness-evolution
+
+  license:
+    code: unknown
+
+  description_zh: >-
+    Runtime harness adaptation for frozen LLM agents：不改模型，而是把
+    environment contract、procedural skill、action realization 与
+    trajectory regulation 作为可演化的模型外基础设施，并在 held-out 评测时冻结 harness。
+
+  capabilities:
+    model_adapter: false
+    benchmark_adapter: false
+    scheduler: false
+    parallel_rollout: false
+    sandbox: false
+    observability: false
+    plugin_system: none
+
+  backends:
+    - research
+
+  deployment:
+    - research
+
+  evaluation:
+    - held-out-task
+    - runtime-adaptation
+
+  maturity: emerging
+  last_verified: 2026-09-14
+
+  tags:
+    - runtime-harness
+
+  references:
+    - https://arxiv.org/abs/2605.22166
+
+- id: rethinking-harness-evolution
+  name: Rethinking the Evaluation of Harness Evolution for Agents
+  organization: research
+  url: https://arxiv.org/abs/2607.12227
+  paper: https://arxiv.org/abs/2607.12227
+
+  category:
+    - research
+    - harness-evolution
+
+  license:
+    code: unknown
+
+  description_zh: >-
+    系统质疑 harness evolution 的评测方式：在同一 benchmark 上搜索与报告、
+    或投入更多推理预算都可能产生虚假增益；在匹配 feedback / inference budget
+    并引入 held-out task 后，自动 harness evolution 并不总能超过简单 test-time scaling。
+
+  capabilities:
+    model_adapter: false
+    benchmark_adapter: false
+    scheduler: false
+    parallel_rollout: false
+    sandbox: false
+    observability: false
+    plugin_system: none
+
+  backends:
+    - research
+
+  deployment:
+    - research
+
+  evaluation:
+    - held-out-task
+    - budget-matched-comparison
+    - overfitting-analysis
+
+  maturity: emerging
+  last_verified: 2026-09-14
+
+  tags:
+    - harness-evaluation
+
+  references:
+    - https://arxiv.org/abs/2607.12227
+
+- id: harnessdev
+  name: HarnessDev
+  organization: research
+  url: https://arxiv.org/abs/2609.01437
+  paper: https://arxiv.org/abs/2609.01437
+
+  category:
+    - research
+    - harness-evolution
+
+  license:
+    code: unknown
+
+  description_zh: >-
+    把“创建与演化可运行 Harness”本身作为 benchmark，
+    将评测单位从最终答案提升到可执行基础设施。
+
+  capabilities:
+    model_adapter: false
+    benchmark_adapter: false
+    scheduler: false
+    parallel_rollout: false
+    sandbox: false
+    observability: false
+    plugin_system: none
+
+  backends:
+    - research
+
+  deployment:
+    - research
+
+  evaluation:
+    - harness-generation
+    - executable-artifact
+
+  maturity: emerging
+  last_verified: 2026-09-14
+
+  tags:
+    - harness-generation
+
+  references:
+    - https://arxiv.org/abs/2609.01437
+
+- id: harnesscompass
+  name: HarnessCompass
+  organization: research
+  url: https://arxiv.org/abs/2608.01918
+  paper: https://arxiv.org/abs/2608.01918
+
+  category:
+    - research
+    - harness-evolution
+
+  license:
+    code: unknown
+
+  description_zh: >-
+    约束式、component-wise 的 automatic harness evolution，
+    并强调向 held-out task 与不同模型的 transfer。
+
+  capabilities:
+    model_adapter: false
+    benchmark_adapter: false
+    scheduler: false
+    parallel_rollout: false
+    sandbox: false
+    observability: false
+    plugin_system: none
+
+  backends:
+    - research
+
+  deployment:
+    - research
+
+  evaluation:
+    - component-wise-evolution
+    - transfer
+
+  maturity: emerging
+  last_verified: 2026-09-14
+
+  tags:
+    - harness-evolution
+
+  references:
+    - https://arxiv.org/abs/2608.01918

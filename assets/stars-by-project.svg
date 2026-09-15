@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 126" width="760" height="126" role="img" aria-label="Stars by project (log scale)">
+
+  <style>
+    .bg { fill: #ffffff; }
+    .label, .value, .title, .sub { font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; }
+    .title { font-size: 15px; font-weight: 600; fill: #111827; }
+    .sub   { font-size: 11px; fill: #6b7280; }
+    .label { font-size: 12px; fill: #374151; }
+    .value { font-size: 11px; fill: #6b7280; }
+    .bar   { fill: #2563eb; }
+    .bar-alt { fill: #7c3aed; }
+    .axis  { stroke: #e5e7eb; stroke-width: 1; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #0b0f19; }
+      .title { fill: #f3f4f6; }
+      .sub, .value { fill: #9ca3af; }
+      .label { fill: #d1d5db; }
+      .bar { fill: #60a5fa; }
+      .bar-alt { fill: #a78bfa; }
+      .axis { stroke: #1f2937; }
+    }
+  </style>
+
+<rect class="bg" width="760" height="126" rx="8"/>
+<text class="title" x="20" y="28">Stars by project (log scale)</text>
+<text class="sub" x="20" y="46">log10(stars + 1) · popularity only, not maturity · fetched n/a</text>
+<line class="axis" x1="210" y1="60" x2="210" y2="106"/>
+<text class="value" x="20" y="80">no github_snapshot data yet — run update_github_stats.py</text>
+</svg>

@@ -1,0 +1,33 @@
+# docker/Dockerfile.lm-eval
+#
+# CPU-only smoke image for the lm-evaluation-harness example.
+# Purpose: verify the harness pipeline still runs after a dependency bump.
+# It is NOT meant to produce meaningful leaderboard numbers.
+
+FROM python:3.11-slim
+
+ENV PIP_NO_CACHE_DIR=1 \
+    PYTHONUNBUFFERED=1 \
+    HF_HOME=/cache/huggingface
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends git \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN python -m pip install --upgrade pip \
+    && pip install "lm_eval[hf]"
+
+WORKDIR /workspace
+
+RUN mkdir -p /workspace/results /cache/huggingface
+
+VOLUME ["/workspace/results", "/cache/huggingface"]
+
+CMD ["lm-eval", "run", \
+     "--model", "hf", \
+     "--model_args", "pretrained=EleutherAI/pythia-70m-deduped", \
+     "--tasks", "hellaswag", \
+     "--device", "cpu", \
+     "--batch_size", "1", \
+     "--limit", "10", \
+     "--output_path", "/workspace/results"]

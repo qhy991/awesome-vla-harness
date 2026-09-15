@@ -1,0 +1,8 @@
+# 防止一次普通「新增链接」PR 顺手修改 schema 或 CI。
+# 请把 @maintainers / @example-reviewers 替换为真实的 GitHub team 或用户名。
+
+/data/                   @maintainers
+/docs/taxonomy.md        @maintainers
+/examples/               @maintainers @example-reviewers
+/.github/                @maintainers
+/scripts/                @maintainers

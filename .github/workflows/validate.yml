@@ -1,0 +1,35 @@
+name: Validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  schema:
+    name: Registry schema and entry coverage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip -r scripts/requirements.txt
+
+      - name: Validate data/projects.yaml
+        run: python scripts/validate_entries.py
+
+  docker:
+    name: Build lm-eval smoke image
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build (no push, no run)
+        run: docker build -t awesome-vla-harness:lm-eval -f docker/Dockerfile.lm-eval .

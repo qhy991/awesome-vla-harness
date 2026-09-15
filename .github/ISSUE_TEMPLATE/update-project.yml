@@ -1,0 +1,59 @@
+name: Update a project
+description: 修正已有条目的分类、License、成熟度或描述
+title: "[Update]: "
+labels:
+  - type:update
+  - status:needs-triage
+
+body:
+  - type: input
+    id: project_id
+    attributes:
+      label: 项目 id
+      description: data/projects.yaml 中的 id，例如 lerobot
+    validations:
+      required: true
+
+  - type: dropdown
+    id: field
+    attributes:
+      label: 需要修改的字段
+      multiple: true
+      options:
+        - category
+        - license
+        - maturity
+        - capabilities
+        - backends
+        - deployment
+        - evaluation
+        - description_zh
+        - notes
+        - url / docs / paper
+        - references
+    validations:
+      required: true
+
+  - type: textarea
+    id: change
+    attributes:
+      label: 建议修改内容
+      description: 请写明「现状 → 建议」
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 一手来源
+      description: 官方仓库、官方文档、Release Notes 或原始论文链接
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: verification
+    attributes:
+      label: Verification
+      options:
+        - label: 我没有手工填写 Stars 等由 CI 注入的动态指标
+          required: true

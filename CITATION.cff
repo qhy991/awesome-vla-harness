@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+title: Awesome VLA Harness
+message: >-
+  If you use this list or its machine-readable registry in your work,
+  please cite it as below.
+type: dataset
+authors:
+  - name: Awesome VLA Harness contributors
+repository-code: https://github.com/OWNER/awesome-vla-harness
+abstract: >-
+  A curated, evidence-based registry of VLA / LLM / Agent harnesses,
+  evaluation frameworks, robot benchmarks, runtimes and harness research,
+  maintained as both human-readable Markdown and a machine-readable
+  YAML registry with timestamped activity metadata.
+keywords:
+  - vision-language-action
+  - evaluation harness
+  - agent harness
+  - robot learning
+  - benchmark
+license: Apache-2.0
+version: v2026.09
+date-released: 2026-09-15

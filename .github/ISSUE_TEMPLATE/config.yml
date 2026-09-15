@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 贡献指南
+    url: https://github.com/OWNER/awesome-vla-harness/blob/main/CONTRIBUTING.md
+    about: 新增或修改条目前请先阅读收录标准与本地检查方式
+  - name: 分类体系
+    url: https://github.com/OWNER/awesome-vla-harness/blob/main/docs/taxonomy.md
+    about: 不确定项目属于哪一层时，请先看 taxonomy

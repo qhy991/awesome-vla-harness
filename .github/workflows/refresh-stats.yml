@@ -1,0 +1,52 @@
+name: Refresh metadata
+
+on:
+  schedule:
+    # 每周一 04:00 UTC，在 links 之后
+    - cron: "0 4 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh:
+    name: Refresh github_snapshot and charts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip -r scripts/requirements.txt
+
+      - name: Refresh GitHub snapshot
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/update_github_stats.py --json-out assets/stats.json
+
+      - name: Render charts
+        run: python scripts/render_charts.py
+
+      - name: Re-validate registry
+        run: python scripts/validate_entries.py
+
+      - name: Open pull request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "chore: refresh metadata"
+          title: "chore: refresh metadata"
+          branch: chore/refresh-metadata
+          delete-branch: true
+          labels: type:automation
+          body: |
+            由 `refresh-stats.yml` 自动生成。
+
+            - 刷新 `data/projects.yaml` 的 `github_snapshot`（含 `fetched_at` 时间戳）
+            - 重新生成 `assets/stars-by-project.svg` 与 `assets/maintenance-freshness.svg`
+
+            `open_items` 来自 GitHub 的 `open_issues_count`，同时包含 issues 和 pull requests。
