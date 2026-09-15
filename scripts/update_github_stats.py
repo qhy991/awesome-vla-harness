@@ -42,7 +42,8 @@ def repo_slug(url: str) -> tuple[str, str] | None:
     if not match:
         return None
     owner, repo = match.group(1), match.group(2)
-    if owner == "OWNER":  # placeholder in this repo's own docs
+    # Never try to fetch stats for placeholders or for this repository itself.
+    if owner == "OWNER" or (owner, repo.removesuffix(".git")) == ("qhy991", "awesome-vla-harness"):
         return None
     return owner, repo.removesuffix(".git")
 

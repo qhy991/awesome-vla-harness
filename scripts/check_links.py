@@ -27,6 +27,10 @@ USER_AGENT = "awesome-vla-harness-link-checker/1.0 (+https://github.com/)"
 
 URL_RE = re.compile(r"https?://[^\s<>\"'\)\]`,]+")
 
+# This repository's own URLs, which cannot resolve before the first push.
+# Pass --check-self once the repository is public to verify them too.
+SELF_REPO = "github.com/qhy991/awesome-vla-harness"
+
 # Placeholders that intentionally do not resolve.
 SKIP_SUBSTRINGS = (
     "github.com/OWNER/",
@@ -86,7 +90,9 @@ def collect_urls(changed_only: bool) -> dict[str, set[str]]:
     return urls
 
 
-def should_skip(url: str) -> bool:
+def should_skip(url: str, check_self: bool = False) -> bool:
+    if not check_self and SELF_REPO in url:
+        return True
     return url in SKIP_EXACT or any(token in url for token in SKIP_SUBSTRINGS)
 
 
@@ -132,6 +138,11 @@ def main() -> int:
     parser.add_argument("--retries", type=int, default=2, help="retries for network-level failures")
     parser.add_argument("--changed-only", action="store_true")
     parser.add_argument(
+        "--check-self",
+        action="store_true",
+        help="also check this repository's own URLs (only valid after the first push)",
+    )
+    parser.add_argument(
         "--allow-forbidden",
         action="store_true",
         default=True,
@@ -140,7 +151,7 @@ def main() -> int:
     args = parser.parse_args()
 
     urls = collect_urls(args.changed_only)
-    checked = {u: s for u, s in urls.items() if not should_skip(u)}
+    checked = {u: s for u, s in urls.items() if not should_skip(u, args.check_self)}
     skipped = len(urls) - len(checked)
 
     if not checked:

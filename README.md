@@ -5,8 +5,8 @@
 >
 > 中文优先；项目名称保留原文。
 
-[![Validate](https://github.com/OWNER/awesome-vla-harness/actions/workflows/validate.yml/badge.svg)](../../actions/workflows/validate.yml)
-[![Links](https://github.com/OWNER/awesome-vla-harness/actions/workflows/links.yml/badge.svg)](../../actions/workflows/links.yml)
+[![Validate](https://github.com/qhy991/awesome-vla-harness/actions/workflows/validate.yml/badge.svg)](../../actions/workflows/validate.yml)
+[![Links](https://github.com/qhy991/awesome-vla-harness/actions/workflows/links.yml/badge.svg)](../../actions/workflows/links.yml)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 
 English version: [README_EN.md](README_EN.md)

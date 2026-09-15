@@ -1,8 +1,8 @@
 # 防止一次普通「新增链接」PR 顺手修改 schema 或 CI。
-# 请把 @maintainers / @example-reviewers 替换为真实的 GitHub team 或用户名。
+# 单人维护阶段直接指向仓库所有者；引入 team 后可替换为 @org/team。
 
-/data/                   @maintainers
-/docs/taxonomy.md        @maintainers
-/examples/               @maintainers @example-reviewers
-/.github/                @maintainers
-/scripts/                @maintainers
+/data/                   @qhy991
+/docs/taxonomy.md        @qhy991
+/examples/               @qhy991
+/.github/                @qhy991
+/scripts/                @qhy991

@@ -6,7 +6,7 @@ message: >-
 type: dataset
 authors:
   - name: Awesome VLA Harness contributors
-repository-code: https://github.com/OWNER/awesome-vla-harness
+repository-code: https://github.com/qhy991/awesome-vla-harness
 abstract: >-
   A curated, evidence-based registry of VLA / LLM / Agent harnesses,
   evaluation frameworks, robot benchmarks, runtimes and harness research,
