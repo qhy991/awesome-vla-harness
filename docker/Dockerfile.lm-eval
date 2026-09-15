@@ -4,7 +4,7 @@
 # Purpose: verify the harness pipeline still runs after a dependency bump.
 # It is NOT meant to produce meaningful leaderboard numbers.
 
-FROM python:3.11-slim
+FROM python:3.14-slim
 
 ENV PIP_NO_CACHE_DIR=1 \
     PYTHONUNBUFFERED=1 \
