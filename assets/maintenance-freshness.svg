@@ -23,22 +23,22 @@
 
 <rect class="bg" width="760" height="260" rx="8"/>
 <text class="title" x="20" y="28">Maintenance freshness (days since last push)</text>
-<text class="sub" x="20" y="46">maintenance / archived counted separately · fetched n/a</text>
+<text class="sub" x="20" y="46">maintenance / archived counted separately · fetched 2026-09-28T10:16:48Z</text>
 <line class="axis" x1="210" y1="60" x2="210" y2="230"/>
 <text class="label" x="200" y="85" text-anchor="end">0–30 days</text>
-<rect class="bar-alt" x="210" y="74" width="2" height="16" rx="3"/>
-<text class="value" x="220" y="87">0</text>
+<rect class="bar-alt" x="210" y="74" width="460" height="16" rx="3"/>
+<text class="value" x="678" y="87">6</text>
 <text class="label" x="200" y="115" text-anchor="end">31–90 days</text>
 <rect class="bar-alt" x="210" y="104" width="2" height="16" rx="3"/>
 <text class="value" x="220" y="117">0</text>
 <text class="label" x="200" y="145" text-anchor="end">91–365 days</text>
-<rect class="bar-alt" x="210" y="134" width="2" height="16" rx="3"/>
-<text class="value" x="220" y="147">0</text>
+<rect class="bar-alt" x="210" y="134" width="76" height="16" rx="3"/>
+<text class="value" x="294" y="147">1</text>
 <text class="label" x="200" y="175" text-anchor="end">&gt;365 days</text>
-<rect class="bar-alt" x="210" y="164" width="2" height="16" rx="3"/>
-<text class="value" x="220" y="177">0</text>
+<rect class="bar-alt" x="210" y="164" width="76" height="16" rx="3"/>
+<text class="value" x="294" y="177">1</text>
 <text class="label" x="200" y="205" text-anchor="end">maintenance / archived</text>
-<rect class="bar-alt" x="210" y="194" width="460" height="16" rx="3"/>
-<text class="value" x="678" y="207">1</text>
-<text class="value" x="210" y="248">12 project(s) without snapshot data</text>
+<rect class="bar-alt" x="210" y="194" width="76" height="16" rx="3"/>
+<text class="value" x="294" y="207">1</text>
+<text class="value" x="210" y="248">4 project(s) without snapshot data</text>
 </svg>
