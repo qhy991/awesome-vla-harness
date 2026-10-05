@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 126" width="760" height="126" role="img" aria-label="Stars by project (log scale)">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 334" width="760" height="334" role="img" aria-label="Stars by project (log scale)">
 
   <style>
     .bg { fill: #ffffff; }
@@ -21,9 +21,35 @@
     }
   </style>
 
-<rect class="bg" width="760" height="126" rx="8"/>
+<rect class="bg" width="760" height="334" rx="8"/>
 <text class="title" x="20" y="28">Stars by project (log scale)</text>
-<text class="sub" x="20" y="46">log10(stars + 1) · popularity only, not maturity · fetched n/a</text>
-<line class="axis" x1="210" y1="60" x2="210" y2="106"/>
-<text class="value" x="20" y="80">no github_snapshot data yet — run update_github_stats.py</text>
+<text class="sub" x="20" y="46">log10(stars + 1) · popularity only, not maturity · fetched 2026-10-05T10:57:26Z</text>
+<line class="axis" x1="210" y1="60" x2="210" y2="314"/>
+<text class="label" x="200" y="83" text-anchor="end">LeRobot</text>
+<rect class="bar" x="210" y="73" width="460" height="14" rx="3"/>
+<text class="value" x="678" y="84">27,955</text>
+<text class="label" x="200" y="109" text-anchor="end">lm-evaluation-harness</text>
+<rect class="bar" x="210" y="99" width="429" height="14" rx="3"/>
+<text class="value" x="647" y="110">14,130</text>
+<text class="label" x="200" y="135" text-anchor="end">OpenCompass</text>
+<rect class="bar" x="210" y="125" width="400" height="14" rx="3"/>
+<text class="value" x="618" y="136">7,493</text>
+<text class="label" x="200" y="161" text-anchor="end">Inspect AI</text>
+<rect class="bar" x="210" y="151" width="358" height="14" rx="3"/>
+<text class="value" x="576" y="162">2,935</text>
+<text class="label" x="200" y="187" text-anchor="end">HELM</text>
+<rect class="bar" x="210" y="177" width="358" height="14" rx="3"/>
+<text class="value" x="576" y="188">2,933</text>
+<text class="label" x="200" y="213" text-anchor="end">LightEval</text>
+<rect class="bar" x="210" y="203" width="352" height="14" rx="3"/>
+<text class="value" x="570" y="214">2,551</text>
+<text class="label" x="200" y="239" text-anchor="end">LIBERO</text>
+<rect class="bar" x="210" y="229" width="349" height="14" rx="3"/>
+<text class="value" x="567" y="240">2,382</text>
+<text class="label" x="200" y="265" text-anchor="end">SimplerEnv</text>
+<rect class="bar" x="210" y="255" width="317" height="14" rx="3"/>
+<text class="value" x="535" y="266">1,174</text>
+<text class="label" x="200" y="291" text-anchor="end">vla-evaluation-harness</text>
+<rect class="bar" x="210" y="281" width="290" height="14" rx="3"/>
+<text class="value" x="508" y="292">635</text>
 </svg>
