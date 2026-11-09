@@ -1,0 +1,104 @@
+{
+  "fetched_at": "2026-11-09T12:17:42Z",
+  "projects": [
+    {
+      "project": "vla-evaluation-harness",
+      "stats": {
+        "fetched_at": "2026-11-09T12:17:42Z",
+        "stars": 677,
+        "forks": 69,
+        "last_push": "2026-11-03T06:26:26Z",
+        "open_items": 5,
+        "archived": false
+      }
+    },
+    {
+      "project": "lerobot",
+      "stats": {
+        "fetched_at": "2026-11-09T12:17:42Z",
+        "stars": 28772,
+        "forks": 6043,
+        "last_push": "2026-11-09T11:19:20Z",
+        "open_items": 921,
+        "archived": false
+      }
+    },
+    {
+      "project": "lm-evaluation-harness",
+      "stats": {
+        "fetched_at": "2026-11-09T12:17:42Z",
+        "stars": 14431,
+        "forks": 3781,
+        "last_push": "2026-11-04T14:34:40Z",
+        "open_items": 1328,
+        "archived": false
+      }
+    },
+    {
+      "project": "inspect-ai",
+      "stats": {
+        "fetched_at": "2026-11-09T12:17:42Z",
+        "stars": 3208,
+        "forks": 915,
+        "last_push": "2026-11-09T11:22:28Z",
+        "open_items": 504,
+        "archived": false
+      }
+    },
+    {
+      "project": "opencompass",
+      "stats": {
+        "fetched_at": "2026-11-09T12:17:42Z",
+        "stars": 7578,
+        "forks": 904,
+        "last_push": "2026-11-09T10:37:41Z",
+        "open_items": 338,
+        "archived": false
+      }
+    },
+    {
+      "project": "lighteval",
+      "stats": {
+        "fetched_at": "2026-11-09T12:17:42Z",
+        "stars": 2582,
+        "forks": 611,
+        "last_push": "2026-10-29T14:15:10Z",
+        "open_items": 494,
+        "archived": false
+      }
+    },
+    {
+      "project": "helm",
+      "stats": {
+        "fetched_at": "2026-11-09T12:17:42Z",
+        "stars": 2968,
+        "forks": 435,
+        "last_push": "2026-09-01T01:33:19Z",
+        "open_items": 124,
+        "archived": false
+      }
+    },
+    {
+      "project": "simpler-env",
+      "stats": {
+        "fetched_at": "2026-11-09T12:17:42Z",
+        "stars": 1181,
+        "forks": 201,
+        "last_push": "2026-09-30T13:55:27Z",
+        "open_items": 33,
+        "archived": false
+      }
+    },
+    {
+      "project": "libero",
+      "stats": {
+        "fetched_at": "2026-11-09T12:17:42Z",
+        "stars": 2523,
+        "forks": 528,
+        "last_push": "2025-03-15T12:14:04Z",
+        "open_items": 108,
+        "archived": false
+      }
+    }
+  ]
+}
